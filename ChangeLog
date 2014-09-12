@@ -14448,8 +14448,17 @@
 	* Updated 'NEWS'.
 	* Incremented the package version to 2.9.1.
 2014-09-11 Fred Gleason <fredg@paravelsystems.com>
-	* Fixed a regression in 'liob/rdreport.cpp' that broke report
+	* Fixed a regression in 'lib/rdreport.cpp' that broke report
 	generation.
 2014-09-11 Fred Gleason <fredg@paravelsystems.com>
 	* Updated 'NEWS'.
 	* Incremented the package version to 2.9.2.
+2014-09-12 Fred Gleason <fredg@paravelsystems.com>
+	* Branched to 'bug/issue000014'.
+	* Instrumented the 'LiveWireLwrpGpio::gpiChangedData()' and
+	'LiveWireLwrpGpio::gpoChangedData()' methods in
+	'ripcd/liveiwre_lwrpgpio.cpp'.
+	* Instrumented the 'RDLiveWire::connectToHost()',
+	'RDLiveWire::readyReadData()', 'RDLiveWire::connectedData()' and
+	'RDLiveWire::connectionClosedData()' methods in 'lib/rdlivewire.cpp'.
+	* Incremented the package version to 2.9.2issue000014int00.

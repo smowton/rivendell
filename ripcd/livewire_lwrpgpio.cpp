@@ -171,6 +171,8 @@ void LiveWireLwrpGpio::processCommand(RDMacro *cmd)
 void LiveWireLwrpGpio::gpiChangedData(unsigned id,unsigned slot,unsigned line,
 				     bool state)
 {
+  syslog(LOG_DEBUG,"LiveWireLwrpGpio::gpiChangedData(%u,%u,%u,%u)",
+	 id,slot,line,state);
   emit gpoChanged(matrixNumber(),slot*RD_LIVEWIRE_GPIO_BUNDLE_SIZE+line,state);
 }
 
@@ -178,6 +180,8 @@ void LiveWireLwrpGpio::gpiChangedData(unsigned id,unsigned slot,unsigned line,
 void LiveWireLwrpGpio::gpoChangedData(unsigned id,unsigned slot,unsigned line,
 				     bool state)
 {
+  syslog(LOG_DEBUG,"LiveWireLwrpGpio::gpoChangedData(%u,%u,%u,%u)",
+	 id,slot,line,state);
   emit gpiChanged(matrixNumber(),slot*RD_LIVEWIRE_GPIO_BUNDLE_SIZE+line,state);
 }
 

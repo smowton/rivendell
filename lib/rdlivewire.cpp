@@ -98,6 +98,8 @@ unsigned RDLiveWire::baseOutput()
 void RDLiveWire::connectToHost(const QString &hostname,Q_UINT16 port,
 			       const QString &passwd,unsigned base_output)
 {
+  syslog(LOG_DEBUG,"RDLiveWire::connectToHost(\"%s\",%u,\"%s\",%u)",
+	 (const char *)hostname,0xFFFF&port,(const char *)passwd,base_output);
   live_hostname=hostname;
   live_tcp_port=port;
   live_password=passwd;
@@ -315,6 +317,7 @@ void RDLiveWire::setRoute(int src_num,int dest_slot) const
 
 void RDLiveWire::connectedData()
 {
+  syslog(LOG_DEBUG,"RDLiveWire::connectedData()");
   QString str="LOGIN";
   if(!live_password.isEmpty()) {
     str+=(" "+live_password);
@@ -327,6 +330,7 @@ void RDLiveWire::connectedData()
 
 void RDLiveWire::connectionClosedData()
 {
+  syslog(LOG_DEBUG,"RDLiveWire::connectionClosedData()");
   if(!live_watchdog_state) {
     live_watchdog_state=true;
     int holdoff=GetHoldoff();
@@ -344,6 +348,7 @@ void RDLiveWire::readyReadData()
 
   int n=live_socket->readBlock(buf,RD_LIVEWIRE_MAX_CMD_LENGTH);
   buf[n]=0;
+  syslog(LOG_DEBUG,"RDLiveWire::readyReadData(\"%s\")",buf);
   for(int i=0;i<n;i++) {
     if(buf[i]=='\n') {
       live_buf[live_ptr]=0;
